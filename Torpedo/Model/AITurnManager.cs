@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Torpedo.Model
@@ -27,6 +28,7 @@ namespace Torpedo.Model
                 Field shot = Ai.Shoot();          
                 Ai.Update(shot, Player.ShipPlacedAtField(shot.X, shot.Y));
                 Player.TakeShot(shot.X, shot.Y);
+                Trace.WriteLine($"{shot.Y}, {shot.X}");
                 _isAITurn = false;
             }
         }

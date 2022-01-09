@@ -54,8 +54,10 @@ namespace Torpedo
             Game.PlaceShip(1, 5, 5, false);
 
             Game.Proceed();
-            Game.Shoot(3, 4);
-
+            for (int i = 0; i < 30; i++)
+            {
+                Game.Shoot(3, 4);
+            }
 
             Trace.WriteLine("hello");
         }
