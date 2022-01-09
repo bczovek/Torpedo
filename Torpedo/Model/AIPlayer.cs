@@ -10,7 +10,7 @@ namespace Torpedo.Model
 
         private List<Field> hits = new List<Field>();
         private int direction = 0;
-        private bool horizontal = true;
+        private bool vertical = true;
         private Field nextTarget;
 
         public AIPlayer()
@@ -28,7 +28,16 @@ namespace Torpedo.Model
             Random random = new Random();
             for (int i = 0; i < 5; i++)
             {
-                PlaceShip(random.Next(0, 4), random.Next(0, 4), i, false);
+                int x = random.Next(0, 9);
+                int y = random.Next(0, 9);
+                bool isHorizontal = random.Next(0, 1) == 1;
+                while(!Battlefield.CheckShipPlace(x, y, i, isHorizontal))
+                {
+                    x = random.Next(0, 9);
+                    y = random.Next(0, 9);
+                    isHorizontal = random.Next(0, 1) == 1;
+                }
+                PlaceShip(x, y, i, isHorizontal);
             }
         }
 
@@ -36,7 +45,13 @@ namespace Torpedo.Model
         {
             for (int i = 0; i < size; i++)
             {
-                Battlefield.SetFieldAsShip(x + i, y);
+                if (isHorizontal)
+                {
+                    Battlefield.SetFieldAsShip(x + i, y);
+                } else
+                {
+                    Battlefield.SetFieldAsShip(x, y + i);
+                }
             }
         }
 
@@ -81,7 +96,7 @@ namespace Torpedo.Model
 
         private void SetNextTarget()
         {
-            if (horizontal)
+            if (vertical)
             {
                 nextTarget = new Field(nextTarget.X + direction, nextTarget.Y);
                 while (hits.Contains(nextTarget))
@@ -117,11 +132,11 @@ namespace Torpedo.Model
             }
             else if (direction == 1 && hits.Count == 1)
             {
-                horizontal = false;
+                vertical = false;
                 nextTarget = hits[0];
                 direction = -1;
             }
-            else if (direction == 1 && !horizontal)
+            else if (direction == 1 && !vertical)
             {
                 Reset();
             }
@@ -134,7 +149,7 @@ namespace Torpedo.Model
         {
             direction = 0;
             hits.Clear();
-            horizontal = true;
+            vertical = true;
         }
     }
 }

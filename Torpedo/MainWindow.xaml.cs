@@ -45,13 +45,15 @@ namespace Torpedo
 
             Game.Shoot(8, 8);*/
 
+            // TODO: Ne lehessen kétszer ugyanoda lőni!!!!!!!!!!!!!!!!!!!!!!!!
+
             OnePlayerGame Game = new OnePlayerGame("asd");
 
-            Game.PlaceShip(1, 1, 1, false);
-            Game.PlaceShip(1, 2, 2, false);
-            Game.PlaceShip(1, 3, 3, false);
-            Game.PlaceShip(1, 4, 4, false);
-            Game.PlaceShip(1, 5, 5, false);
+            Game.PlaceShip(1, 1, 1, true);
+            Game.PlaceShip(1, 2, 2, true);
+            Game.PlaceShip(1, 3, 3, true);
+            Game.PlaceShip(1, 4, 4, true);
+            Game.PlaceShip(9, 9, 5, true);
 
             Game.Proceed();
             for (int i = 0; i < 30; i++)

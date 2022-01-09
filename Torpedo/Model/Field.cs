@@ -20,6 +20,17 @@ namespace Torpedo.Model
         public bool Ship { get; set; }
         public bool Shot { get; set; }
 
+        public static bool IsValidShipPlace(int x, int y, int size, bool isHorizontal) 
+        {
+            if (isHorizontal)
+            {
+                return x + size < 10;
+            }
+            else { 
+                return y + size < 10;
+            }
+        }
+
         public bool Equals(Field other)
         {
             return this.X == other.X && this.Y == other.Y;

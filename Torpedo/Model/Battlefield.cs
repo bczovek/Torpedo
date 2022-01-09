@@ -55,5 +55,24 @@ namespace Torpedo.Model
 
             return true;
         }
+
+        public bool CheckShipPlace(int x, int y, int size, bool isHorizontal)
+        {
+            if(!Field.IsValidShipPlace(x, y, size, isHorizontal))
+            {
+                return false;
+            }
+            for (int i = 0; i < size; i++)
+            {
+                int xx = isHorizontal ? (x + i) : x;
+                int yy = isHorizontal ? y : (y + i);
+                if (_fields[yy, xx].Ship)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Torpedo.Model
@@ -21,12 +22,26 @@ namespace Torpedo.Model
         public int Points { get; set; }
         public string Name { get; } 
 
-        public void PlaceShip(int x, int y, int size, bool isHorizontal)
+        public bool PlaceShip(int x, int y, int size, bool isHorizontal)
         {
-            for (int i = 0; i < size; i++)
+            Trace.WriteLine($"{Field.IsValidShipPlace(x, y, size, isHorizontal)}, {Battlefield.CheckShipPlace(x, y, size, isHorizontal)}");
+            if (Battlefield.CheckShipPlace(x, y, size, isHorizontal))
             {
-                Battlefield.SetFieldAsShip(x + i, y);
+                for (int i = 0; i < size; i++)
+                {
+                    if (isHorizontal)
+                    {
+                        Battlefield.SetFieldAsShip(x + i, y);
+                    }
+                    else
+                    {
+                        Battlefield.SetFieldAsShip(x, y + i);
+                    }
+                }
+                return true;
             }
+
+            return false;
         }
 
         public bool ShipPlacedAtField(int x, int y)
