@@ -5,15 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Torpedo.Views"
         mc:Ignorable="d"
-        Title="GameWindow" Height="620" Width="1300">
+        Title="GameWindow" Height="650" Width="1300">
 	<StackPanel Background="Black">
 		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-			</Grid.ColumnDefinitions>
-			<Canvas Grid.Column="0" x:Name="canvas" Background="Lime" Height="555" Width="555" Margin="20" />
-			<Canvas Grid.Column="1" x:Name="canvas2" Background="Lime" Height="555" Width="555" Margin="20" />
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*"/>
+				<RowDefinition Height="11*"/>
+			</Grid.RowDefinitions>
+
+			<Grid Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Content="Jelenlegi játékos: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="1" Content="Jatekos1" Foreground="White" HorizontalAlignment="Left"/>
+				<Label Grid.Column="2" Content="Saját találatok: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="3" Content="0" Foreground="White" HorizontalAlignment="Left"/>
+				<Label Grid.Column="4" Content="Ellenfél találatai: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="5" Content="0" Foreground="White" HorizontalAlignment="Left"/>
+				<Label Grid.Column="6" Content="Körök száma: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="7" Content="0" Foreground="White" HorizontalAlignment="Left"/>
+			</Grid>
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				
+				<Canvas Grid.Column="0" Grid.Row="1" x:Name="canvas" Background="Lime" Height="555" Width="555" Margin="20" />
+				<Canvas Grid.Column="1" Grid.Row="1" x:Name="canvas2" Background="Lime" Height="555" Width="555" Margin="20" />
+			</Grid>
 		</Grid>
 	</StackPanel>
 </Window>
