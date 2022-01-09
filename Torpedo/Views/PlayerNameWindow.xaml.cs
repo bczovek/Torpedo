@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace Torpedo.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for PlayerNameWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class PlayerNameWindow : Window
     {
-        public Window1()
+        public PlayerNameWindow()
         {
             InitializeComponent();
         }
