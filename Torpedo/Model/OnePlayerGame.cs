@@ -4,23 +4,27 @@ using System.Text;
 
 namespace Torpedo.Model
 {
-    public class OnePlayerGame : IGameModel
+    public class OnePlayerGame
     {
-        private Players _players;
+        private AITurnManager _players;
 
         public OnePlayerGame(string playerName)
         {
-            _players = new Players(new Player(playerName), new AIPlayer());
+            _players = new AITurnManager(new Player(playerName));
         }
 
-        public void PlaceShip(IPlayer player, int x, int y, int size, bool isHorizontal)
+        public void PlaceShip(int x, int y, int size, bool isHorizontal)
         {
-            throw new NotImplementedException();
+            _players.Player.PlaceShip(x, y, size, isHorizontal);
         }
 
         public void Shoot(int x, int y)
         {
             _players.Shoot(x, y);
+        }
+
+        public void Proceed() { 
+            _players.Proceed();
         }
     }
 }

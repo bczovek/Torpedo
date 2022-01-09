@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Torpedo.Model
 {
-    public class Player : IPlayer
+    public class Player
     {
         private Battlefield Battlefield;
 
@@ -21,9 +21,12 @@ namespace Torpedo.Model
         public int Points { get; set; }
         public string Name { get; } 
 
-        public void PlaceShip()
+        public void PlaceShip(int x, int y, int size, bool isHorizontal)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < size; i++)
+            {
+                Battlefield.SetFieldAsShip(x + i, y);
+            }
         }
 
         public bool ShipPlacedAtField(int x, int y)

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Torpedo.Model
 {
-    public class Players
+    public class TurnManager
     {
-        public Players(IPlayer player1, IPlayer player2) { 
+        public TurnManager(Player player1, Player player2) { 
             Random random = new Random();
             int randomNumber = random.Next(1, 2);
             AttackingPlayer = randomNumber == 1 ? player1 : player2;
@@ -15,12 +15,12 @@ namespace Torpedo.Model
         }
 
         public int TurnCount { get; private set; }
-        public IPlayer AttackingPlayer { get; private set; }
-        public IPlayer DefendingPlayer { get; private set; }
+        public Player AttackingPlayer { get; private set; }
+        public Player DefendingPlayer { get; private set; }
 
-        public void NextTurn()
+        private void NextTurn()
         {
-            IPlayer temp = AttackingPlayer;
+            Player temp = AttackingPlayer;
             AttackingPlayer = DefendingPlayer;
             DefendingPlayer = temp;
             TurnCount++;
@@ -30,6 +30,7 @@ namespace Torpedo.Model
         {
             AttackingPlayer.Shoot(x, y, DefendingPlayer.ShipPlacedAtField(x, y));
             DefendingPlayer.TakeShot(x, y);
+            NextTurn();
         }
     }
 }

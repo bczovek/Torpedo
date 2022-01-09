@@ -23,21 +23,21 @@ namespace Torpedo.Model
 
         public void SetFieldAsShip(int x, int y)
         {
-            Field field = _fields[x, y];
+            Field field = _fields[y, x];
             field.Ship = true;
-            _fields[x, y] = field;
+            _fields[y, x] = field;
         }
 
         public void SetFieldAsShot(int x, int y)
         {
-            Field field = _fields[x, y];
+            Field field = _fields[y, x];
             field.Shot = true;
-            _fields[x, y] = field;
+            _fields[y, x] = field;
         }
 
         public bool IsShip(int x, int y)
         {
-            return _fields[x, y].Ship;
+            return _fields[y, x].Ship;
         }
 
         public bool IsGameOver()

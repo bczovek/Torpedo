@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Torpedo.Model
 {
-    public struct Field
+    public class Field
     {
-
         public Field(int x, int y)
         {
             X = x;
@@ -19,5 +18,7 @@ namespace Torpedo.Model
         public int Y { get; }
         public bool Ship { get; set; }
         public bool Shot { get; set; }
+
+
     }
 }

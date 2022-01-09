@@ -4,24 +4,36 @@ using System.Text;
 
 namespace Torpedo.Model
 {
-    public class TwoPlayerGame : IGameModel
+    public class TwoPlayerGame
     {
 
-        private Players _players;
+        private TurnManager _players;
 
         public TwoPlayerGame(string player1Name, string player2Name)
         {
-            _players = new Players(new Player(player1Name), new Player(player2Name));
+            _players = new TurnManager(new Player(player1Name), new Player(player2Name));
         }
 
-        public void PlaceShip(IPlayer player, int x, int y, int size, bool isHorizontal)
+        public void PlaceShip(string playerName, int x, int y, int size, bool isHorizontal)
         {
-            throw new NotImplementedException();
+            if(_players.AttackingPlayer.Name == playerName)
+            {
+                _players.AttackingPlayer.PlaceShip(x, y, size, isHorizontal);
+            }
+            if (_players.DefendingPlayer.Name == playerName)
+            {
+                _players.DefendingPlayer.PlaceShip(x, y, size, isHorizontal);
+            }
         }
 
         public void Shoot(int x, int y)
         {
-            throw new NotImplementedException();
+            _players.Shoot(x, y);
+        }
+
+        public Player GetCurrentPlayer()
+        {
+            return _players.AttackingPlayer;
         }
     }
 }
