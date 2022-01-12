@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\takib\OneDrive\Asztali gép\C#final\Torpedo\Torpedo\App.xaml
-4154592010
+5-1918393200
 
-21-570619543
+23-779853637
 193-136339782
-MainWindow.xaml;Views\GameWindow.xaml;Views\PlayerNameWindow.xaml;Views\ScoreboardWindow.xaml;
+MainWindow.xaml;Views\GameWindow.xaml;Views\PlayerNameWindow.xaml;Views\ScoreboardWindow.xaml;Views\ShipPlacingWindow.xaml;
 
-True
+False
 
