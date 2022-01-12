@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\czove\Desktop\Torpedo\Torpedo\obj\Debug\netcoreapp3.1\
+C:\Users\takib\OneDrive\Asztali gép\C#final\Torpedo\Torpedo\obj\Debug\netcoreapp3.1\
 Torpedo
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\czove\Desktop\Torpedo\Torpedo\App.xaml
+C:\Users\takib\OneDrive\Asztali gép\C#final\Torpedo\Torpedo\App.xaml
 4154592010
 
-191515365709
-193941476400
+21-570619543
+193-136339782
 MainWindow.xaml;Views\GameWindow.xaml;Views\PlayerNameWindow.xaml;Views\ScoreboardWindow.xaml;
 
 True
