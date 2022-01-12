@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ANxFNm8QuItrc4CHsumOeknkEPzCHBIf8z7QIk2PdQoFlIZPXw6Y89O/c9sSyo6TyUyYNx9Mf8WpNfVQLoyM5Q==",
+  "dgSpecHash": "HuxL+uXuI1QMxUoUzDkbodhVNunBSDvRabmI3kYslfC9NWKbVYkUbjmq6y6AKHqSBqxkEJEHL0b65c5w+kDNOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\czove\\Desktop\\Torpedo\\Torpedo\\Torpedo.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\czove\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512"
+  ],
   "logs": []
 }

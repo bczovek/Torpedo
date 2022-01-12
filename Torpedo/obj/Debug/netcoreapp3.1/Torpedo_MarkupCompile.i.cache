@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\czove\Desktop\Torpedo\Torpedo\App.xaml
-2776861463
+4154592010
 
-14-1100687442
-192-1533232326
-MainWindow.xaml;Views\PlayerNamesWindow.xaml;
+191515365709
+193941476400
+MainWindow.xaml;Views\GameWindow.xaml;Views\PlayerNameWindow.xaml;Views\ScoreboardWindow.xaml;
 
-False
+True
 
