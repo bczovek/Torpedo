@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using Torpedo.Views;
 
 namespace Torpedo.ViewModel
 {
@@ -48,14 +49,20 @@ namespace Torpedo.ViewModel
             {
                 if(!(string.IsNullOrWhiteSpace(_firstPlayer) || string.IsNullOrWhiteSpace(_secondPlayer)))
                 {
-
+                    ShipPlacingWindow firstPlayerShipWindow = new ShipPlacingWindow();
+                    ShipPlacingWindow secondPlayerShipWindow = new ShipPlacingWindow();
+                    firstPlayerShipWindow.Show();
+                    secondPlayerShipWindow.Show();
+                    //CloseWindow();
                 }
             }
             else
             {
                 if(!string.IsNullOrWhiteSpace(_firstPlayer))
                 {
-
+                    ShipPlacingWindow firstPlayerShipWindow = new ShipPlacingWindow();
+                    firstPlayerShipWindow.Show();
+                    //CloseWindow();
                 }
             }
         }
