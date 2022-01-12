@@ -6,46 +6,104 @@
         xmlns:local="clr-namespace:Torpedo.Views"
         xmlns:viewModel="clr-namespace:Torpedo.ViewModel"
         mc:Ignorable="d"
-        Title="GameWindow" Height="800" Width="1300">
+        Title="GameWindow" Height="700" Width="1300">
     <Window.DataContext>
         <viewModel:GameViewModel />
     </Window.DataContext>
     <StackPanel Background="Black">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="11*"/>
-            </Grid.RowDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*"/>
+				<RowDefinition Height="11*"/>
+			</Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+			<Grid Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Label Grid.Column="0" Content="Jelenlegi játékos: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="1" Content="Jatekos1" Foreground="White" HorizontalAlignment="Left"/>
+				<Label Grid.Column="2" Content="Saját találatok: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="3" Content="0" Foreground="White" HorizontalAlignment="Left"/>
+				<Label Grid.Column="4" Content="Ellenfél találatai: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="5" Content="0" Foreground="White" HorizontalAlignment="Left"/>
+				<Label Grid.Column="6" Content="Körök száma: " Foreground="White" HorizontalAlignment="Right"/>
+				<Label Grid.Column="7" Content="0" Foreground="White" HorizontalAlignment="Left"/>
+			</Grid>
+			<Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Jelenlegi játékos: " Foreground="White" HorizontalAlignment="Right"/>
-                <Label Grid.Column="1" Content="Jatekos1" Foreground="White" HorizontalAlignment="Left"/>
-                <Label Grid.Column="2" Content="Saját találatok: " Foreground="White" HorizontalAlignment="Right"/>
-                <Label Grid.Column="3" Content="0" Foreground="White" HorizontalAlignment="Left"/>
-                <Label Grid.Column="4" Content="Ellenfél találatai: " Foreground="White" HorizontalAlignment="Right"/>
-                <Label Grid.Column="5" Content="0" Foreground="White" HorizontalAlignment="Left"/>
-                <Label Grid.Column="6" Content="Körök száma: " Foreground="White" HorizontalAlignment="Right"/>
-                <Label Grid.Column="7" Content="0" Foreground="White" HorizontalAlignment="Left"/>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Canvas Grid.Column="0" Grid.Row="1" x:Name="canvas" Background="White" Height="555" Width="555" Margin="20" />
-                <Canvas Grid.Column="1" Grid.Row="1" x:Name="canvas2" Background="White" Height="555" Width="555" Margin="20" />
+
+                <Label Foreground="White" Grid.Row="1" Grid.Column="1" Content="A    B    C    D   E    F    G    H    I     J"  FontSize="30px" Margin="85,0,0, 550"  />
+                <Label Foreground="White" Grid.Row="1" Grid.Column="0" Content="A    B    C    D   E    F    G    H    I     J"  FontSize="30px" Margin="85,0,0, 550"  />
+                <TextBlock Foreground="White" Grid.Row="1" Grid.Column="1" Width="50px" Text="1 2 3 4 5 6 7 8 9 10" FontFamily="SimHei" FontSize="42px" Margin="0,50,550,0" TextWrapping="Wrap" />
+                <TextBlock Foreground="White" Grid.Row="1" Grid.Column="0" Width="50px" Text="1 2 3 4 5 6 7 8 9 10" FontFamily="SimHei" FontSize="42px" Margin="0,50,550,0" TextWrapping="Wrap" />
+                <Grid Margin="20" Height="500" Width="500" Name="playerGrid" Grid.Row="1" Grid.Column="0" Background="Transparent" ShowGridLines="True" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                </Grid>
+
+                <Grid Margin="20" Height="500" Width="500" Name="enemyGrid" Grid.Row="1" Grid.Column="1" Background="Transparent" ShowGridLines="True" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                </Grid>
             </Grid>
-        </Grid>
+		</Grid>
 	</StackPanel>
 </Window>
