@@ -24,7 +24,6 @@ namespace Torpedo.ViewModel
         private void OnShowScoreboard()
         {
             ScoreboardWindow scoreboardWindow = new ScoreboardWindow();
-
             CloseWindow();
             scoreboardWindow.Show();
         }
@@ -32,14 +31,12 @@ namespace Torpedo.ViewModel
         private void OnPlay()
         {
             PlayerNameWindow playerNameWindow = new PlayerNameWindow();
-
             CloseWindow();
             playerNameWindow.Show();
         }
 
         public DelegateCommand Play { get; set; }
         public DelegateCommand ShowScoreboard { get; set; }
-
         public DelegateCommand Exit { get; set; }
     }
 }

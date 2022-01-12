@@ -1,11 +1,15 @@
 ﻿using Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Media;
+using Torpedo.Views;
 
 namespace Torpedo.ViewModel
 {
-    class ShipPlacingViewModel
+    class ShipPlacingViewModel : AbstractViewModel
     {
         public ShipPlacingViewModel()
         {
@@ -23,7 +27,10 @@ namespace Torpedo.ViewModel
 
         private void OnDone()
         {
-
+            GameWindow gameWindow = new GameWindow();
+            CloseWindow();
+            gameWindow.Show();
         }
+
     }
 }
