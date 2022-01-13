@@ -24,7 +24,6 @@ namespace Torpedo.Model
 
         public bool PlaceShip(int x, int y, int size, bool isHorizontal)
         {
-            Trace.WriteLine($"{Field.IsValidShipPlace(x, y, size, isHorizontal)}, {Battlefield.CheckShipPlace(x, y, size, isHorizontal)}");
             if (Battlefield.CheckShipPlace(x, y, size, isHorizontal))
             {
                 for (int i = 0; i < size; i++)
@@ -63,6 +62,5 @@ namespace Torpedo.Model
         {
             Battlefield.SetFieldAsShot(x, y);
         }
-
     }
 }

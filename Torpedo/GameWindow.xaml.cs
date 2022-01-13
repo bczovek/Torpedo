@@ -9,15 +9,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Torpedo.Model;
 
-namespace Torpedo.Views
+namespace Torpedo
 {
     /// <summary>
-    /// Interaction logic for PlayerNameWindow.xaml
+    /// Interaction logic for GameWindow.xaml
     /// </summary>
-    public partial class PlayerNameWindow : Window
+    public partial class GameWindow : Window
     {
-        public PlayerNameWindow()
+        public GameWindow(ITurnManager turnManager)
         {
             InitializeComponent();
         }

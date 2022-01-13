@@ -1,21 +1,17 @@
-﻿<Window x:Class="Torpedo.Views.ShipPlacingWindow"
+﻿<Window x:Class="Torpedo.ShipPlacingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Torpedo.Views"
-        xmlns:viewModel="clr-namespace:Torpedo.ViewModel"
+        xmlns:local="clr-namespace:Torpedo"
         mc:Ignorable="d"
-        Title="ShipPlacingWindow" Height="600" Width="800">
-    <Window.DataContext>
-        <viewModel:ShipPlacingViewModel />
-    </Window.DataContext>
+        Title="ShipPlacingWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <Label Content="PlayerName" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30px" FontWeight="Bold"></Label>
+        <Label Name="playerLabel"  Content="PlayerName" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30px" FontWeight="Bold"></Label>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -25,12 +21,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Content="Reset" Height="50px" Width="100px" Command="{Binding Reset}"/>
-                <Button Grid.Row="1" Content="Done" Height="50px" Width="100px" Command="{Binding Done}"/>
+                <Button Grid.Row="0" Content="Reset" Height="50px" Width="100px"/>
+                <Button Grid.Row="1" Content="Done" Height="50px" Width="100px"/>
+                <CheckBox Name="Horizontal" Grid.Row="2" Grid.Column="0" Content="Horizontal ship" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
-            <Grid Grid.Column="1" Margin="20" Height="500" Width="500" Name="playerGrid" Background="Transparent" ShowGridLines="True" >
+            <Grid Grid.Column="1" Margin="20" Height="500" Width="500" Name="playerGrid" Background="Transparent" ShowGridLines="True" MouseLeftButtonDown="playerGrid_MouseLeftButtonDown" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>

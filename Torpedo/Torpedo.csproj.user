@@ -7,12 +7,30 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\ShipPlacingWindow.xaml.cs">
+    <Compile Update="GameWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PlayerNameWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ScoreboardWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ShipPlacingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\ShipPlacingWindow.xaml">
+    <Page Update="GameWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PlayerNameWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ScoreboardWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ShipPlacingWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

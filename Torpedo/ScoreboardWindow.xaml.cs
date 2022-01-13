@@ -9,9 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Torpedo.ViewModel;
 
-namespace Torpedo.Views
+namespace Torpedo
 {
     /// <summary>
     /// Interaction logic for ScoreboardWindow.xaml
@@ -21,18 +20,6 @@ namespace Torpedo.Views
         public ScoreboardWindow()
         {
             InitializeComponent();
-            Loaded += WindowLoaded;
-        }
-
-        private void WindowLoaded(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is AbstractViewModel vm)
-            {
-                vm.Close += () =>
-                {
-                    this.Close();
-                };
-            }
         }
     }
 }

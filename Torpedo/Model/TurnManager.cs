@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Torpedo.Model
 {
-    public class TurnManager
+    public class TurnManager : ITurnManager
     {
         public TurnManager(Player player1, Player player2) { 
             Random random = new Random();
@@ -18,12 +18,28 @@ namespace Torpedo.Model
         public Player AttackingPlayer { get; private set; }
         public Player DefendingPlayer { get; private set; }
 
-        private void NextTurn()
+        public List<Player> players => new List<Player> { AttackingPlayer, DefendingPlayer};
+
+        public void NextTurn()
         {
             Player temp = AttackingPlayer;
             AttackingPlayer = DefendingPlayer;
             DefendingPlayer = temp;
             TurnCount++;
+        }
+
+        public bool PlaceShip(string playerName, int x, int y, int size, bool isHorizontal)
+        {
+            if(playerName == AttackingPlayer.Name)
+            {
+                return AttackingPlayer.PlaceShip(x, y, size, isHorizontal);
+            }
+            else if (playerName == DefendingPlayer.Name)
+            {
+                return DefendingPlayer.PlaceShip(x, y, size, isHorizontal);
+            }
+
+            return false;
         }
 
         public void Shoot(int x, int y)

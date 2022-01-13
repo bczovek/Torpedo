@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Torpedo.ViewModel;
 
 namespace Torpedo
 {
@@ -21,18 +20,29 @@ namespace Torpedo
         public MainWindow()
         {
             InitializeComponent();
-            Loaded += WindowLoaded;
         }
 
-        private void WindowLoaded(object sender, RoutedEventArgs e)
+        private void Play(object sender, RoutedEventArgs e)
         {
-            if(DataContext is AbstractViewModel vm)
-            {
-                vm.Close += () =>
-                {
-                    this.Close();
-                };
-            }
+            PlayerNameWindow playerNameWindow = new PlayerNameWindow();
+
+            playerNameWindow.Show();
+
+            this.Close();
+        }
+
+        private void Scoreboard(object sender, RoutedEventArgs e)
+        {
+            ScoreboardWindow scoreboardWindow = new ScoreboardWindow();
+
+            scoreboardWindow.Show();
+
+            this.Close();
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

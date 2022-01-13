@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Torpedo.Model
 {
-    public class AITurnManager
+    public class AITurnManager : ITurnManager
     {
         private bool _isAITurn;
         public AITurnManager(Player player)
@@ -21,7 +21,9 @@ namespace Torpedo.Model
         public Player Player { get; private set; }
         public AIPlayer Ai { get; private set; }
 
-        public void Proceed() 
+        public List<Player> players => new List<Player> {Player};
+
+        public void NextTurn() 
         { 
             if(_isAITurn)
             {
@@ -33,6 +35,16 @@ namespace Torpedo.Model
             }
         }
 
+        public bool PlaceShip(string playerName, int x, int y, int size, bool isHorizontal)
+        {
+            if(playerName == Player.Name)
+            {
+                return Player.PlaceShip(x, y, size, isHorizontal);
+            }
+
+            return false;
+        }
+
         public void Shoot(int x, int y)
         {
             if(!_isAITurn)
@@ -41,7 +53,7 @@ namespace Torpedo.Model
                 Ai.TakeShot(x, y);
                 _isAITurn = true;
             }
-            Proceed();
+            NextTurn();
         }
     }
 }
