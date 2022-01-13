@@ -30,11 +30,11 @@ namespace Torpedo.Model
                 {
                     if (isHorizontal)
                     {
-                        Battlefield.SetFieldAsShip(x + i, y);
+                        Battlefield.SetFieldAsShip(x, y + i);
                     }
                     else
                     {
-                        Battlefield.SetFieldAsShip(x, y + i);
+                        Battlefield.SetFieldAsShip(x + i, y);
                     }
                 }
                 return true;
@@ -65,13 +65,18 @@ namespace Torpedo.Model
 
         public bool Shoot(int x, int y, bool isHit)
         {
-            OpponentBattlefield.SetFieldAsShot(x, y);
-            if(isHit)
+            if (!OpponentBattlefield.IsShot(x, y))
             {
-                OpponentBattlefield.SetFieldAsShip(x, y);
-                Points++;
+                OpponentBattlefield.SetFieldAsShot(x, y);
+                if (isHit)
+                {
+                    OpponentBattlefield.SetFieldAsShip(x, y);
+                    Points++;
+                }
+                return isHit;
             }
-            return isHit;
+
+            return true;
         }
 
         public void TakeShot(int x, int y)

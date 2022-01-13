@@ -24,11 +24,16 @@ namespace Torpedo.Model
         {
             if (isHorizontal)
             {
-                return x + size <= 10;
-            }
-            else { 
                 return y + size <= 10;
             }
+            else { 
+                return x + size <= 10;
+            }
+        }
+
+        public static bool IsValidField(int x, int y)
+        {
+            return x < 10 && x >= 0 && y < 10 && y >= 0;
         }
 
         public bool Equals(Field other)

@@ -61,7 +61,7 @@ namespace Torpedo
                 col++;
             }
 
-            if (_currentPlayer.PlaceShip(row, col, shipNumber, !(bool)Horizontal.IsChecked))
+            if (_currentPlayer.PlaceShip(row, col, shipNumber, (bool)Horizontal.IsChecked))
             {
                 for (int i = 0; i < shipNumber; i++)
                 {
