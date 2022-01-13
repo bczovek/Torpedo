@@ -26,10 +26,15 @@ namespace Torpedo
             InitializeComponent();
             _turnManager = turnManager;
             UpdateOwnTable();
+            if(_turnManager.players.Count > 1)
+            {
+                UpdateEnemyTable();
+            }
         }
         
         public void UpdateOwnTable()
         {
+            int enemyPoints = 0;
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -38,6 +43,7 @@ namespace Torpedo
                     if (_turnManager.players[0].ShipPlacedAtField(i, j) && _turnManager.players[0].FieldIsShot(i, j))
                     {
                         rectangle.Fill = Brushes.Red;
+                        enemyPoints++;
                     }
                     else if (_turnManager.players[0].ShipPlacedAtField(i, j))
                     {
@@ -57,6 +63,10 @@ namespace Torpedo
                     Grid.SetColumn(rectangle, j);
                 }
             }
+            CurrentPlayer.Content = _turnManager.players[0].Name;
+            NumberOfOwnHits.Content = _turnManager.players[0].Points;
+            NumberOfEnemyHits.Content = enemyPoints;
+            NumberOfTurns.Content = _turnManager.TurnCount;
         }
 
         public void UpdateEnemyTable()
@@ -113,16 +123,22 @@ namespace Torpedo
 
             if (_turnManager.players.Count > 1)
             {
-                _turnManager.Shoot(row, col);
-                NextTurnWindow nextTurnWindow = new NextTurnWindow(_turnManager.players[0].Name);
-                nextTurnWindow.Owner = this;
-                playerGrid.Visibility = Visibility.Hidden;
-                enemyGrid.Visibility = Visibility.Hidden;
-                nextTurnWindow.Show();
+                if (!_turnManager.Shoot(row, col))
+                {
+                    NextTurnWindow nextTurnWindow = new NextTurnWindow(_turnManager.players[0].Name);
+                    nextTurnWindow.Owner = this;
+                    playerGrid.Visibility = Visibility.Hidden;
+                    enemyGrid.Visibility = Visibility.Hidden;
+                    nextTurnWindow.Show();
+                }
+                else
+                {
+                    UpdateEnemyTable();
+                    UpdateOwnTable();
+                }
             }
             else
             {
-                UpdateOwnTable();
 
                 Rectangle rectangle = new Rectangle();
 
@@ -138,6 +154,8 @@ namespace Torpedo
                 enemyGrid.Children.Add(rectangle);
                 Grid.SetRow(rectangle, row);
                 Grid.SetColumn(rectangle, col);
+
+                UpdateOwnTable();
             }
         }
     }

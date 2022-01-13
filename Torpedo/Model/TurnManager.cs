@@ -47,7 +47,10 @@ namespace Torpedo.Model
         {
             bool isHit = AttackingPlayer.Shoot(x, y, DefendingPlayer.ShipPlacedAtField(x, y));
             DefendingPlayer.TakeShot(x, y);
-            NextTurn();
+            if (!isHit)
+            {
+                NextTurn();
+            }
 
             return isHit;
         }
