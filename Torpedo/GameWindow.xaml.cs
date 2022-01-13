@@ -22,5 +22,40 @@ namespace Torpedo
         {
             InitializeComponent();
         }
+
+        private void ShootOnGridClick(object sender, MouseButtonEventArgs e)
+        {
+            var point = Mouse.GetPosition(enemyGrid);
+
+            int row = 0;
+            int col = 0;
+            double accumulatedHeight = 0.0;
+            double accumulatedWidth = 0.0;
+
+            foreach (var rowDefinition in enemyGrid.RowDefinitions)
+            {
+                accumulatedHeight += rowDefinition.ActualHeight;
+                if (accumulatedHeight >= point.Y)
+                    break;
+                row++;
+            }
+
+            foreach (var columnDefinition in enemyGrid.ColumnDefinitions)
+            {
+                accumulatedWidth += columnDefinition.ActualWidth;
+                if (accumulatedWidth >= point.X)
+                    break;
+                col++;
+            }
+
+            Rectangle rectangle = new Rectangle();
+
+            rectangle.Fill = Brushes.Gray;
+            rectangle.IsHitTestVisible = false;
+            enemyGrid.Children.Add(rectangle);
+            Grid.SetRow(rectangle, row);
+            Grid.SetColumn(rectangle, col);
+
+        }
     }
 }

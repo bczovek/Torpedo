@@ -72,7 +72,7 @@
                     </Grid.RowDefinitions>
                 </Grid>
 
-                <Grid Margin="20" Height="500" Width="500" Name="enemyGrid" Grid.Row="1" Grid.Column="1" Background="Transparent" ShowGridLines="True" >
+                <Grid Margin="20" Height="500" Width="500" Name="enemyGrid" Grid.Row="1" Grid.Column="1" Background="Transparent" ShowGridLines="True" MouseLeftButtonDown="ShootOnGridClick" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>

@@ -89,6 +89,7 @@ namespace Torpedo
             if(shipNumber > MaxShipNumber)
             {
                 DoneButton.IsEnabled = true;
+                playerGrid.IsEnabled = false;
             }
             else
             { 
@@ -103,6 +104,7 @@ namespace Torpedo
             _currentPlayer.ClearShips();
             shipNumber = 1;
             updateLabel();
+            playerGrid.IsEnabled = true;
         }
 
         private void OnDone(object sender, RoutedEventArgs e)
@@ -115,6 +117,7 @@ namespace Torpedo
                 playerGrid.Children.Clear();
                 updateLabel();
                 DoneButton.IsEnabled = false;
+                playerGrid.IsEnabled = true;
             }
             else
             {
