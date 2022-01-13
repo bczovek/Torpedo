@@ -13,5 +13,7 @@ namespace Torpedo.Model
         bool PlaceShip(string playerName, int x, int y, int size, bool isHorizontal);
 
         List<Player> players { get; }
+
+        int TurnCount { get; set; }
     }
 }

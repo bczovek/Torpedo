@@ -14,11 +14,12 @@ namespace Torpedo.Model
             TurnCount = 1;
         }
 
-        public int TurnCount { get; private set; }
         public Player AttackingPlayer { get; private set; }
         public Player DefendingPlayer { get; private set; }
 
         public List<Player> players => new List<Player> { AttackingPlayer, DefendingPlayer};
+
+        public int TurnCount { get; set; }
 
         public void NextTurn()
         {

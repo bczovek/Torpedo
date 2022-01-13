@@ -16,12 +16,14 @@ namespace Torpedo.Model
             int randomNumber = random.Next(1, 2);
             _isAITurn = randomNumber == 1;
             Ai.PlaceShips();
+            TurnCount = 1;
         }
-        public int TurnCount { get; private set; }
         public Player Player { get; private set; }
         public AIPlayer Ai { get; private set; }
 
         public List<Player> players => new List<Player> {Player};
+
+        public int TurnCount { get; set; }
 
         public void NextTurn() 
         { 
@@ -33,6 +35,7 @@ namespace Torpedo.Model
                 Trace.WriteLine($"{shot.Y}, {shot.X}");
                 _isAITurn = false;
             }
+            TurnCount++;
         }
 
         public bool PlaceShip(string playerName, int x, int y, int size, bool isHorizontal)
