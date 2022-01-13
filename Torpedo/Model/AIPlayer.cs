@@ -26,7 +26,7 @@ namespace Torpedo.Model
         public void PlaceShips()
         {
             Random random = new Random();
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 int x = random.Next(0, 9);
                 int y = random.Next(0, 9);

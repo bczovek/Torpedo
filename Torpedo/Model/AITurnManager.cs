@@ -45,15 +45,18 @@ namespace Torpedo.Model
             return false;
         }
 
-        public void Shoot(int x, int y)
+        public bool Shoot(int x, int y)
         {
-            if(!_isAITurn)
+            bool isHit = false;
+            if (!_isAITurn)
             {
-                Player.Shoot(x, y, Ai.ShipPlacedAtField(x, y));
+                isHit = Player.Shoot(x, y, Ai.ShipPlacedAtField(x, y));
                 Ai.TakeShot(x, y);
                 _isAITurn = true;
             }
             NextTurn();
+
+            return isHit;
         }
     }
 }

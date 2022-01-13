@@ -42,11 +42,14 @@ namespace Torpedo.Model
             return false;
         }
 
-        public void Shoot(int x, int y)
+        public bool Shoot(int x, int y)
         {
-            AttackingPlayer.Shoot(x, y, DefendingPlayer.ShipPlacedAtField(x, y));
+            bool isHit = AttackingPlayer.Shoot(x, y, DefendingPlayer.ShipPlacedAtField(x, y));
             DefendingPlayer.TakeShot(x, y);
             NextTurn();
+
+            return isHit;
         }
+
     }
 }

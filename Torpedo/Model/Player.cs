@@ -53,14 +53,16 @@ namespace Torpedo.Model
             this.Battlefield.ResetField();
         }
 
-        public void Shoot(int x, int y, bool isHit)
+        public bool Shoot(int x, int y, bool isHit)
         {
             OpponentBattlefield.SetFieldAsShot(x, y);
             if(isHit)
             {
                 OpponentBattlefield.SetFieldAsShip(x, y);
                 Points++;
+                return true;
             }
+            return false;
         }
 
         public void TakeShot(int x, int y)

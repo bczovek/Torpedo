@@ -18,9 +18,34 @@ namespace Torpedo
     /// </summary>
     public partial class GameWindow : Window
     {
+
+        private ITurnManager _turnManager;
+
         public GameWindow(ITurnManager turnManager)
         {
             InitializeComponent();
+            _turnManager = turnManager;
+            InitOwnTable();
+
+        }
+        
+        private void InitOwnTable()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if(_turnManager.players[0].ShipPlacedAtField(i, j))
+                    {
+                        Rectangle rectangle = new Rectangle();
+                        rectangle.Fill = Brushes.White;
+                        rectangle.IsHitTestVisible = false;
+                        playerGrid.Children.Add(rectangle);
+                        Grid.SetRow(rectangle, i);
+                        Grid.SetColumn(rectangle, j);
+                    }
+                }
+            }
         }
 
         private void ShootOnGridClick(object sender, MouseButtonEventArgs e)
@@ -50,7 +75,14 @@ namespace Torpedo
 
             Rectangle rectangle = new Rectangle();
 
-            rectangle.Fill = Brushes.Gray;
+            if(_turnManager.Shoot(row, col))
+            {
+                rectangle.Fill = Brushes.Red;
+            }
+            else
+            {
+                rectangle.Fill = Brushes.Gray;
+            }
             rectangle.IsHitTestVisible = false;
             enemyGrid.Children.Add(rectangle);
             Grid.SetRow(rectangle, row);
