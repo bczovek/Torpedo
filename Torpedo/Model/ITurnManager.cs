@@ -15,5 +15,7 @@ namespace Torpedo.Model
         List<Player> players { get; }
 
         int TurnCount { get; set; }
+
+        string WinnerName();
     }
 }

@@ -58,6 +58,11 @@ namespace Torpedo.Model
             this.Battlefield.ResetField();
         }
 
+        public bool IsGameOver()
+        {
+            return Battlefield.IsGameOver();
+        }
+
         public bool Shoot(int x, int y, bool isHit)
         {
             OpponentBattlefield.SetFieldAsShot(x, y);

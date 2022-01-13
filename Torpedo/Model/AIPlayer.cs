@@ -42,6 +42,16 @@ namespace Torpedo.Model
             }
         }
 
+        public bool FieldIsShot(int x, int y)
+        {
+            return Battlefield.IsShot(x, y);
+        }
+
+        public bool IsGameOver()
+        {
+            return Battlefield.IsGameOver();
+        }
+
         private void PlaceShip(int x, int y, int size, bool isHorizontal)
         {
             for (int i = 0; i < size; i++)

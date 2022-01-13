@@ -30,7 +30,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Row="2" Content="Back to main menu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="200" Command="{Binding Back}"/>
+        <Button Grid.Row="2" Content="Back to main menu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="200" Click="MainMenu"/>
 
     </Grid>
 </Window>

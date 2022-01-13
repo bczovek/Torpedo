@@ -40,6 +40,20 @@ namespace Torpedo.Model
             TurnCount++;
         }
 
+        public string WinnerName()
+        {
+            if(Player.IsGameOver())
+            {
+                return "AI";
+            }
+            else if(Ai.IsGameOver())
+            {
+                return Player.Name;
+            }
+
+            return "";
+        }
+
         public bool PlaceShip(string playerName, int x, int y, int size, bool isHorizontal)
         {
             if(playerName == Player.Name)

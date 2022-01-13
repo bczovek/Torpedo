@@ -157,6 +157,13 @@ namespace Torpedo
 
                 UpdateOwnTable();
             }
+
+            if(!string.IsNullOrWhiteSpace(_turnManager.WinnerName()))
+            {
+                GameOverWindow gameOverWindow = new GameOverWindow(_turnManager.WinnerName());
+                gameOverWindow.Show();
+                this.Close();
+            }
         }
     }
 }

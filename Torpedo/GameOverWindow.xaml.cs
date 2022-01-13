@@ -13,15 +13,15 @@ using System.Windows.Shapes;
 namespace Torpedo
 {
     /// <summary>
-    /// Interaction logic for ScoreboardWindow.xaml
+    /// Interaction logic for GameOverWindow.xaml
     /// </summary>
-    public partial class ScoreboardWindow : Window
+    public partial class GameOverWindow : Window
     {
-        public ScoreboardWindow()
+        public GameOverWindow(string WinnerPlayerName)
         {
             InitializeComponent();
+            WinnerName.Content = WinnerPlayerName + " has won.";
         }
-
         private void MainMenu(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();

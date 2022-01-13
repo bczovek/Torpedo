@@ -29,6 +29,19 @@ namespace Torpedo.Model
             TurnCount++;
         }
 
+        public string WinnerName()
+        {
+            if(players[0].IsGameOver())
+            {
+                return players[1].Name;
+            }
+            else if (players[1].IsGameOver())
+            {
+                return players[0].Name;
+            }
+
+            return "";
+        }
         public bool PlaceShip(string playerName, int x, int y, int size, bool isHorizontal)
         {
             if(playerName == AttackingPlayer.Name)
