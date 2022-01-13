@@ -23,27 +23,33 @@ namespace Torpedo
             InitializeComponent();
         }
 
-        private void player1TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void EnableSeconPlayer (object sender, EventArgs e)
         {
-            
+            player2TextBox.IsEnabled = (bool)TwoPlayerGame.IsChecked;
+            player2Label.IsEnabled = (bool)TwoPlayerGame.IsChecked;
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)TwoPlayerGame.IsChecked)
+            if (!string.IsNullOrWhiteSpace(player1TextBox.Text) && (!string.IsNullOrWhiteSpace(player2TextBox.Text) || !(bool)TwoPlayerGame.IsChecked))
             {
-                ShipPlacingWindow shipPlacingWindow = new ShipPlacingWindow(new TurnManager(new Player(player1TextBox.Text), new Player(player2TextBox.Text)));
+                if ((bool)TwoPlayerGame.IsChecked)
+                {
+                    ShipPlacingWindow shipPlacingWindow = new ShipPlacingWindow(new TurnManager(new Player(player1TextBox.Text), new Player(player2TextBox.Text)));
 
-                shipPlacingWindow.Show();
+                    shipPlacingWindow.Show();
 
-                this.Close();
-            } else
-            {
-                ShipPlacingWindow shipPlacingWindow = new ShipPlacingWindow(new AITurnManager(new Player(player1TextBox.Text)));
+                    this.Close();
+                }
+                else
+                {
+                    ShipPlacingWindow shipPlacingWindow = new ShipPlacingWindow(new AITurnManager(new Player(player1TextBox.Text)));
 
-                shipPlacingWindow.Show();
+                    shipPlacingWindow.Show();
 
-                this.Close();
+                    this.Close();
+                }
+
             }
         }
     }

@@ -35,6 +35,7 @@ namespace Torpedo
         {
             playerLabel.Content = $"{_currentPlayer.Name} playing ship {shipNumber}";
         }
+
         private void playerGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var point = Mouse.GetPosition(playerGrid);
@@ -59,50 +60,69 @@ namespace Torpedo
                     break;
                 col++;
             }
- 
-            for (int i = 0; i < shipNumber; i++)
-            {
-                int nextCol = col;
-                int nextRow = row;
-                if ((bool)Horizontal.IsChecked)
-                {
-                    nextCol = col + i;
-                }
-                else
-                {
-                    nextRow = row + i;
-                }
-                Rectangle rectangle = new Rectangle();
 
-                rectangle.Fill = Brushes.Black;
-                rectangle.IsHitTestVisible = false;
-                playerGrid.Children.Add(rectangle);
-                Grid.SetRow(rectangle, nextRow);
-                Grid.SetColumn(rectangle, nextCol);
+            if (_currentPlayer.PlaceShip(row, col, shipNumber, !(bool)Horizontal.IsChecked))
+            {
+                for (int i = 0; i < shipNumber; i++)
+                {
+                    int nextCol = col;
+                    int nextRow = row;
+                    if ((bool)Horizontal.IsChecked)
+                    {
+                        nextCol = col + i;
+                    }
+                    else
+                    {
+                        nextRow = row + i;
+                    }
+                    Rectangle rectangle = new Rectangle();
+
+                    rectangle.Fill = Brushes.Black;
+                    rectangle.IsHitTestVisible = false;
+                    playerGrid.Children.Add(rectangle);
+                    Grid.SetRow(rectangle, nextRow);
+                    Grid.SetColumn(rectangle, nextCol);
+                }
+                shipNumber++;
             }
-            _currentPlayer.PlaceShip(row, col, shipNumber, (bool)Horizontal.IsChecked);
-            shipNumber++;
 
             if(shipNumber > MaxShipNumber)
             {
-                
-                if (_players.Count > playerCount)
-                {                 
-                    _currentPlayer = _players[playerCount];
-                    playerCount++;
-                    shipNumber = 1;
-                    playerGrid.Children.Clear();
-                }
-                else
-                {
-                    GameWindow gameWindow = new GameWindow(_turnManager);
-                    gameWindow.Show();
-
-                    this.Close();
-                }
+                DoneButton.IsEnabled = true;
             }
-
+            else
+            { 
             updateLabel();
+            }
+        }
+
+        private void OnReset(object sender, RoutedEventArgs e)
+        {
+            DoneButton.IsEnabled = false;
+            playerGrid.Children.Clear();
+            _currentPlayer.ClearShips();
+            shipNumber = 1;
+            updateLabel();
+        }
+
+        private void OnDone(object sender, RoutedEventArgs e)
+        {
+            if (_players.Count > playerCount)
+            {
+                _currentPlayer = _players[playerCount];
+                playerCount++;
+                shipNumber = 1;
+                playerGrid.Children.Clear();
+                updateLabel();
+                DoneButton.IsEnabled = false;
+            }
+            else
+            {
+                GameWindow gameWindow = new GameWindow(_turnManager);
+                gameWindow.Show();
+
+                this.Close();
+            }
         }
     }
 }

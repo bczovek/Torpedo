@@ -24,8 +24,8 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Content="Reset" Height="50px" Width="100px"/>
-                <Button Grid.Row="1" Content="Done" Height="50px" Width="100px"/>
+                <Button Name="ResetButton" Grid.Row="0" Content="Reset" Height="50px" Width="100px" Click="OnReset"/>
+                <Button Name="DoneButton" Grid.Row="1" Content="Done" Height="50px" Width="100px" Click="OnDone" IsEnabled="False"/>
                 <CheckBox Name="Horizontal" Grid.Row="2" Grid.Column="0" Content="Horizontal ship" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
             <Grid Grid.Column="1" Margin="20" Height="500" Width="500" Name="playerGrid" Background="Transparent" ShowGridLines="True" MouseLeftButtonDown="playerGrid_MouseLeftButtonDown" >

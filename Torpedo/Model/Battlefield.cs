@@ -10,6 +10,17 @@ namespace Torpedo.Model
         private const int Battlefield_Width = 10;
         private Field[,] _fields = new Field[Battlefield_Height, Battlefield_Width];
 
+        public void ResetField()
+        {
+            for (int i = 0; i < Battlefield_Height; i++)
+            {
+                for (int j = 0; j < Battlefield_Width; j++)
+                {
+                    _fields[i, j] = new Field(i, j);
+                }
+            }
+        }
+
         public Battlefield()
         {
             for (int i = 0; i < Battlefield_Height; i++)

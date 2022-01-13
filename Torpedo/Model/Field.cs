@@ -24,10 +24,10 @@ namespace Torpedo.Model
         {
             if (isHorizontal)
             {
-                return x + size < 10;
+                return x + size <= 10;
             }
             else { 
-                return y + size < 10;
+                return y + size <= 10;
             }
         }
 
