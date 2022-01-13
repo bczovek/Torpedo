@@ -26,7 +26,6 @@ namespace Torpedo
             InitializeComponent();
             _turnManager = turnManager;
             UpdateOwnTable();
-
         }
         
         public void UpdateOwnTable()
@@ -60,6 +59,33 @@ namespace Torpedo
             }
         }
 
+        public void UpdateEnemyTable()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Rectangle rectangle = new Rectangle();
+                    if (_turnManager.players[1].ShipPlacedAtField(i, j) && _turnManager.players[1].FieldIsShot(i, j))
+                    {
+                        rectangle.Fill = Brushes.Red;
+                    }
+                    else if (_turnManager.players[1].FieldIsShot(i, j))
+                    {
+                        rectangle.Fill = Brushes.Gray;
+                    }
+                    else
+                    {
+                        rectangle.Fill = Brushes.LightBlue;
+                    }
+                    rectangle.IsHitTestVisible = false;
+                    enemyGrid.Children.Add(rectangle);
+                    Grid.SetRow(rectangle, i);
+                    Grid.SetColumn(rectangle, j);
+                }
+            }
+        }
+
         private void ShootOnGridClick(object sender, MouseButtonEventArgs e)
         {
             var point = Mouse.GetPosition(enemyGrid);
@@ -85,31 +111,33 @@ namespace Torpedo
                 col++;
             }
 
-            Rectangle rectangle = new Rectangle();
-
-            if(_turnManager.Shoot(row, col))
-            {
-                rectangle.Fill = Brushes.Red;
-            }
-            else
-            {
-                rectangle.Fill = Brushes.Gray;
-            }
-            rectangle.IsHitTestVisible = false;
-            enemyGrid.Children.Add(rectangle);
-            Grid.SetRow(rectangle, row);
-            Grid.SetColumn(rectangle, col);
-
             if (_turnManager.players.Count > 1)
             {
+                _turnManager.Shoot(row, col);
                 NextTurnWindow nextTurnWindow = new NextTurnWindow(_turnManager.players[0].Name);
                 nextTurnWindow.Owner = this;
                 playerGrid.Visibility = Visibility.Hidden;
+                enemyGrid.Visibility = Visibility.Hidden;
                 nextTurnWindow.Show();
             }
             else
             {
                 UpdateOwnTable();
+
+                Rectangle rectangle = new Rectangle();
+
+                if (_turnManager.Shoot(row, col))
+                {
+                    rectangle.Fill = Brushes.Red;
+                }
+                else
+                {
+                    rectangle.Fill = Brushes.Gray;
+                }
+                rectangle.IsHitTestVisible = false;
+                enemyGrid.Children.Add(rectangle);
+                Grid.SetRow(rectangle, row);
+                Grid.SetColumn(rectangle, col);
             }
         }
     }

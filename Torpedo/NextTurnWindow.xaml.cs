@@ -27,6 +27,8 @@ namespace Torpedo
         {
             ((GameWindow)this.Owner).UpdateOwnTable();
             ((GameWindow)this.Owner).playerGrid.Visibility = Visibility.Visible;
+            ((GameWindow)this.Owner).UpdateEnemyTable();
+            ((GameWindow)this.Owner).enemyGrid.Visibility = Visibility.Visible;
             this.Close();
         }
     }
