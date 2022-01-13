@@ -34,26 +34,26 @@ namespace Torpedo.Model
 
         public void SetFieldAsShip(int x, int y)
         {
-            Field field = _fields[y, x];
+            Field field = _fields[x, y];
             field.Ship = true;
-            _fields[y, x] = field;
+            _fields[x, y] = field;
         }
 
         public void SetFieldAsShot(int x, int y)
         {
-            Field field = _fields[y, x];
+            Field field = _fields[x, y];
             field.Shot = true;
-            _fields[y, x] = field;
+            _fields[x, y] = field;
         }
 
         public bool IsShip(int x, int y)
         {
-            return _fields[y, x].Ship;
+            return _fields[x, y].Ship;
         }
 
         public bool IsShot(int x, int y)
         {
-            return _fields[y, x].Shot;
+            return _fields[x, y].Shot;
         }
 
         public bool IsGameOver()
@@ -80,9 +80,9 @@ namespace Torpedo.Model
             }
             for (int i = 0; i < size; i++)
             {
-                int xx = isHorizontal ? (x + i) : x;
-                int yy = isHorizontal ? y : (y + i);
-                if (_fields[yy, xx].Ship)
+                int xx = isHorizontal ? x : (x + i);
+                int yy = isHorizontal ? (y + i) : y;
+                if (_fields[xx, yy].Ship)
                 {
                     return false;
                 }

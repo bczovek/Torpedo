@@ -9,7 +9,6 @@ namespace Torpedo.Model
     {
 
         private List<Field> hits = new List<Field>();
-        private List<Field> _shotFields = new List<Field>();
         private int direction = 0;
         private bool vertical = true;
         private Field nextTarget;
@@ -48,10 +47,10 @@ namespace Torpedo.Model
             {
                 if (isHorizontal)
                 {
-                    Battlefield.SetFieldAsShip(x + i, y);
+                    Battlefield.SetFieldAsShip(x, y + i);
                 } else
                 {
-                    Battlefield.SetFieldAsShip(x, y + i);
+                    Battlefield.SetFieldAsShip(x + i, y);
                 }
             }
         }
@@ -63,27 +62,43 @@ namespace Torpedo.Model
 
         public Field Shoot()
         {
-            Random random = new Random();
             if (direction == 0)
             {
-                int x;
-                int y;
-                do
+                RandomNextTarget();
+            }
+
+            while(!Field.IsValidField(nextTarget.X, nextTarget.Y))
+            {
+                SetDirection();
+                if(direction == 0)
                 {
-                    x = random.Next(0, 10);
-                    y = random.Next(0, 10);
+                    RandomNextTarget();
+                    break;
                 }
-                while (_shotFields.Contains(new Field(x, y)));
-                nextTarget = new Field(x, y);
-                OpponentBattlefield.SetFieldAsShot(nextTarget.X, nextTarget.Y);
-                _shotFields.Add(nextTarget);
+                SetNextTarget();
             }
 
             return nextTarget;
         }
 
+        private void RandomNextTarget()
+        {
+            Random random = new Random();
+            int x;
+            int y;
+            do
+            {
+                x = random.Next(0, 10);
+                y = random.Next(0, 10);
+            }
+            while (OpponentBattlefield.IsShot(x, y));
+            nextTarget = new Field(x, y);
+            OpponentBattlefield.SetFieldAsShot(nextTarget.X, nextTarget.Y);
+        }
+
         public void Update(Field field, bool didHit)
         {
+            OpponentBattlefield.SetFieldAsShot(field.X, field.Y);
             if (didHit && !hits.Contains(field))
             {
                 hits.Add(field);
@@ -121,11 +136,6 @@ namespace Torpedo.Model
                 {
                     nextTarget = new Field(nextTarget.X, nextTarget.Y + direction);
                 }
-            }
-            if(nextTarget.X < 0 || nextTarget.X > 9 || nextTarget.Y < 0 || nextTarget.Y > 9)
-            {
-                SetDirection();
-                SetNextTarget();
             }
         }
 
