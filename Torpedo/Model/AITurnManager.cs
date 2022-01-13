@@ -25,14 +25,13 @@ namespace Torpedo.Model
 
         public int TurnCount { get; set; }
 
-        public void NextTurn() 
-        { 
-            while(_isAITurn)
+        public void NextTurn()
+        {
+            while (_isAITurn)
             {
-                Field shot = Ai.Shoot();          
+                Field shot = Ai.Shoot();
                 Ai.Update(shot, Player.ShipPlacedAtField(shot.X, shot.Y));
                 Player.TakeShot(shot.X, shot.Y);
-                //Trace.WriteLine($"{shot.Y}, {shot.X}");
                 if (!Player.ShipPlacedAtField(shot.X, shot.Y))
                 {
                     _isAITurn = false;
@@ -58,9 +57,12 @@ namespace Torpedo.Model
             {
                 isHit = Player.Shoot(x, y, Ai.ShipPlacedAtField(x, y));
                 Ai.TakeShot(x, y);
-                _isAITurn = true;
             }
-            NextTurn();
+            if (!isHit)
+            {
+                _isAITurn = true;
+                NextTurn();
+            }
 
             return isHit;
         }

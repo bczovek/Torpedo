@@ -9,6 +9,7 @@ namespace Torpedo.Model
     {
 
         private List<Field> hits = new List<Field>();
+        private List<Field> _shotFields = new List<Field>();
         private int direction = 0;
         private bool vertical = true;
         private Field nextTarget;
@@ -65,8 +66,17 @@ namespace Torpedo.Model
             Random random = new Random();
             if (direction == 0)
             {
-                nextTarget = new Field(random.Next(0, 9), random.Next(0, 9));
+                int x;
+                int y;
+                do
+                {
+                    x = random.Next(0, 10);
+                    y = random.Next(0, 10);
+                }
+                while (_shotFields.Contains(new Field(x, y)));
+                nextTarget = new Field(x, y);
                 OpponentBattlefield.SetFieldAsShot(nextTarget.X, nextTarget.Y);
+                _shotFields.Add(nextTarget);
             }
 
             return nextTarget;
@@ -74,7 +84,7 @@ namespace Torpedo.Model
 
         public void Update(Field field, bool didHit)
         {
-            if (didHit)
+            if (didHit && !hits.Contains(field))
             {
                 hits.Add(field);
                 Points++;
@@ -111,6 +121,11 @@ namespace Torpedo.Model
                 {
                     nextTarget = new Field(nextTarget.X, nextTarget.Y + direction);
                 }
+            }
+            if(nextTarget.X < 0 || nextTarget.X > 9 || nextTarget.Y < 0 || nextTarget.Y > 9)
+            {
+                SetDirection();
+                SetNextTarget();
             }
         }
 
