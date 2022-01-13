@@ -51,6 +51,11 @@ namespace Torpedo.Model
             return _fields[y, x].Ship;
         }
 
+        public bool IsShot(int x, int y)
+        {
+            return _fields[y, x].Shot;
+        }
+
         public bool IsGameOver()
         {
             for (int i = 0; i < _fields.GetLength(0); i++)

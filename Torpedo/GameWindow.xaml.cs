@@ -29,21 +29,33 @@ namespace Torpedo
 
         }
         
-        private void InitOwnTable()
+        public void InitOwnTable()
         {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if(_turnManager.players[0].ShipPlacedAtField(i, j))
+                    Rectangle rectangle = new Rectangle();
+                    if (_turnManager.players[0].ShipPlacedAtField(i, j) && _turnManager.players[0].FieldIsShot(i, j))
                     {
-                        Rectangle rectangle = new Rectangle();
-                        rectangle.Fill = Brushes.White;
-                        rectangle.IsHitTestVisible = false;
-                        playerGrid.Children.Add(rectangle);
-                        Grid.SetRow(rectangle, i);
-                        Grid.SetColumn(rectangle, j);
+                        rectangle.Fill = Brushes.Red;
                     }
+                    else if (_turnManager.players[0].ShipPlacedAtField(i, j))
+                    {
+                        rectangle.Fill = Brushes.White;
+                    }
+                    else if (_turnManager.players[0].FieldIsShot(i, j))
+                    {
+                        rectangle.Fill = Brushes.Gray;
+                    }
+                    else
+                    {
+                        rectangle.Fill = Brushes.LightBlue;
+                    }
+                    rectangle.IsHitTestVisible = false;
+                    playerGrid.Children.Add(rectangle);
+                    Grid.SetRow(rectangle, i);
+                    Grid.SetColumn(rectangle, j);
                 }
             }
         }
@@ -88,6 +100,10 @@ namespace Torpedo
             Grid.SetRow(rectangle, row);
             Grid.SetColumn(rectangle, col);
 
+            NextTurnWindow nextTurnWindow = new NextTurnWindow(_turnManager.players[0].Name);
+            nextTurnWindow.Owner = this;
+            playerGrid.Visibility = Visibility.Hidden;
+            nextTurnWindow.Show();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Torpedo
         
         private void updateLabel()
         {
-            playerLabel.Content = $"{_currentPlayer.Name} playing ship {shipNumber}";
+            playerLabel.Content = $"{_currentPlayer.Name} placing ship {shipNumber}";
         }
 
         private void playerGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

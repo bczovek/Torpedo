@@ -48,6 +48,11 @@ namespace Torpedo.Model
             return Battlefield.IsShip(x, y);
         }
 
+        public bool FieldIsShot(int x, int y)
+        {
+            return Battlefield.IsShot(x, y);
+        }
+
         public void ClearShips()
         {
             this.Battlefield.ResetField();
@@ -60,9 +65,8 @@ namespace Torpedo.Model
             {
                 OpponentBattlefield.SetFieldAsShip(x, y);
                 Points++;
-                return true;
             }
-            return false;
+            return isHit;
         }
 
         public void TakeShot(int x, int y)
