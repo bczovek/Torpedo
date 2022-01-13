@@ -25,7 +25,7 @@ namespace Torpedo
 
         private void OkButtonClicked (object sender, RoutedEventArgs e)
         {
-            ((GameWindow)this.Owner).InitOwnTable();
+            ((GameWindow)this.Owner).UpdateOwnTable();
             ((GameWindow)this.Owner).playerGrid.Visibility = Visibility.Visible;
             this.Close();
         }

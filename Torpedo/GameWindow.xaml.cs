@@ -25,11 +25,11 @@ namespace Torpedo
         {
             InitializeComponent();
             _turnManager = turnManager;
-            InitOwnTable();
+            UpdateOwnTable();
 
         }
         
-        public void InitOwnTable()
+        public void UpdateOwnTable()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -100,10 +100,17 @@ namespace Torpedo
             Grid.SetRow(rectangle, row);
             Grid.SetColumn(rectangle, col);
 
-            NextTurnWindow nextTurnWindow = new NextTurnWindow(_turnManager.players[0].Name);
-            nextTurnWindow.Owner = this;
-            playerGrid.Visibility = Visibility.Hidden;
-            nextTurnWindow.Show();
+            if (_turnManager.players.Count > 1)
+            {
+                NextTurnWindow nextTurnWindow = new NextTurnWindow(_turnManager.players[0].Name);
+                nextTurnWindow.Owner = this;
+                playerGrid.Visibility = Visibility.Hidden;
+                nextTurnWindow.Show();
+            }
+            else
+            {
+                UpdateOwnTable();
+            }
         }
     }
 }
