@@ -78,7 +78,7 @@ namespace Torpedo.Model
                 NextTurn();
             }
 
-            return isHit;
+            return isHit && Ai.ShipPlacedAtField(x, y);
         }
     }
 }
