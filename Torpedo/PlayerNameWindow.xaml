@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Torpedo"
         mc:Ignorable="d"
         Title="PlayerNameWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
