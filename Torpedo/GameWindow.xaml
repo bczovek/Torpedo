@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Torpedo"
         mc:Ignorable="d"
-        Title="GameWindow" Height="700" Width="1300">
+        Title="GameWindow" Height="700" Width="1300"
+        WindowStartupLocation="CenterScreen">
     <StackPanel Background="Black">
         <Grid>
             <Grid.RowDefinitions>

@@ -30,12 +30,12 @@ namespace Torpedo.Model
             {
                 int x = random.Next(0, 9);
                 int y = random.Next(0, 9);
-                bool isHorizontal = random.Next(0, 1) == 1;
+                bool isHorizontal = random.Next(0, 2) == 1;
                 while(!Battlefield.CheckShipPlace(x, y, i, isHorizontal))
                 {
                     x = random.Next(0, 9);
                     y = random.Next(0, 9);
-                    isHorizontal = random.Next(0, 1) == 1;
+                    isHorizontal = random.Next(0, 2) == 1;
                 }
                 PlaceShip(x, y, i, isHorizontal);
             }
