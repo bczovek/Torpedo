@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Torpedo.Model
+﻿namespace Torpedo.Model
 {
     public class Battlefield
     {
-        private const int Battlefield_Height = 10;
-        private const int Battlefield_Width = 10;
-        private Field[,] _fields = new Field[Battlefield_Height, Battlefield_Width];
+        private const int BattlefieldHeight = 10;
+        private const int BattlefieldWidth = 10;
+        private Field[,] _fields = new Field[BattlefieldHeight, BattlefieldWidth];
 
         public void ResetField()
         {
-            for (int i = 0; i < Battlefield_Height; i++)
+            for (int i = 0; i < BattlefieldHeight; i++)
             {
-                for (int j = 0; j < Battlefield_Width; j++)
+                for (int j = 0; j < BattlefieldWidth; j++)
                 {
                     _fields[i, j] = new Field(i, j);
                 }
@@ -23,9 +19,9 @@ namespace Torpedo.Model
 
         public Battlefield()
         {
-            for (int i = 0; i < Battlefield_Height; i++)
+            for (int i = 0; i < BattlefieldHeight; i++)
             {
-                for (int j = 0; j < Battlefield_Width; j++)
+                for (int j = 0; j < BattlefieldWidth; j++)
                 {
                     _fields[i, j] = new Field(i, j);
                 }

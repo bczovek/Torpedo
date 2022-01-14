@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace Torpedo.Model
 {
@@ -28,13 +26,13 @@ namespace Torpedo.Model
             Random random = new Random();
             for (int i = 1; i <= 5; i++)
             {
-                int x = random.Next(0, 9);
-                int y = random.Next(0, 9);
+                int x = random.Next(0, 10);
+                int y = random.Next(0, 10);
                 bool isHorizontal = random.Next(0, 2) == 1;
                 while(!Battlefield.CheckShipPlace(x, y, i, isHorizontal))
                 {
-                    x = random.Next(0, 9);
-                    y = random.Next(0, 9);
+                    x = random.Next(0, 10);
+                    y = random.Next(0, 10);
                     isHorizontal = random.Next(0, 2) == 1;
                 }
                 PlaceShip(x, y, i, isHorizontal);

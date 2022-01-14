@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Torpedo.Model
+﻿namespace Torpedo.Model
 {
     public class Result
     {

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-
-namespace Torpedo.Model
+﻿namespace Torpedo.Model
 {
     public class Player
     {
-        private Battlefield Battlefield;
+        private Battlefield _battlefield;
 
-        private Battlefield OpponentBattlefield;
+        private Battlefield _opponentBattlefield;
 
         public Player(string name)
         {
-            Battlefield = new Battlefield();
-            OpponentBattlefield = new Battlefield();
+            _battlefield = new Battlefield();
+            _opponentBattlefield = new Battlefield();
             Name = name;
             Points = 0;
         }
@@ -24,17 +19,17 @@ namespace Torpedo.Model
 
         public bool PlaceShip(int x, int y, int size, bool isHorizontal)
         {
-            if (Battlefield.CheckShipPlace(x, y, size, isHorizontal))
+            if (_battlefield.CheckShipPlace(x, y, size, isHorizontal))
             {
                 for (int i = 0; i < size; i++)
                 {
                     if (isHorizontal)
                     {
-                        Battlefield.SetFieldAsShip(x, y + i);
+                        _battlefield.SetFieldAsShip(x, y + i);
                     }
                     else
                     {
-                        Battlefield.SetFieldAsShip(x + i, y);
+                        _battlefield.SetFieldAsShip(x + i, y);
                     }
                 }
                 return true;
@@ -45,32 +40,32 @@ namespace Torpedo.Model
 
         public bool ShipPlacedAtField(int x, int y)
         {
-            return Battlefield.IsShip(x, y);
+            return _battlefield.IsShip(x, y);
         }
 
         public bool FieldIsShot(int x, int y)
         {
-            return Battlefield.IsShot(x, y);
+            return _battlefield.IsShot(x, y);
         }
 
         public void ClearShips()
         {
-            this.Battlefield.ResetField();
+            this._battlefield.ResetField();
         }
 
         public bool IsGameOver()
         {
-            return Battlefield.IsGameOver();
+            return _battlefield.IsGameOver();
         }
 
         public bool Shoot(int x, int y, bool isHit)
         {
-            if (!OpponentBattlefield.IsShot(x, y))
+            if (!_opponentBattlefield.IsShot(x, y))
             {
-                OpponentBattlefield.SetFieldAsShot(x, y);
+                _opponentBattlefield.SetFieldAsShot(x, y);
                 if (isHit)
                 {
-                    OpponentBattlefield.SetFieldAsShip(x, y);
+                    _opponentBattlefield.SetFieldAsShip(x, y);
                     Points++;
                 }
                 return isHit;
@@ -81,7 +76,7 @@ namespace Torpedo.Model
 
         public void TakeShot(int x, int y)
         {
-            Battlefield.SetFieldAsShot(x, y);
+            _battlefield.SetFieldAsShot(x, y);
         }
     }
 }
