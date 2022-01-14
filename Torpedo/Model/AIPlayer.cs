@@ -8,18 +8,21 @@ namespace Torpedo.Model
     public class AIPlayer
     {
 
-        private List<Field> hits = new List<Field>();
-        private int direction = 0;
-        private bool vertical = true;
-        private Field nextTarget;
+        private List<Field> _hits = new List<Field>();
 
         public AIPlayer()
         {
             Battlefield = new Battlefield();
             OpponentBattlefield = new Battlefield();
             Points = 0;
+            Direction = 0;
+            Vertical = true;
+            NextTarget = null;
         }
 
+        public int Direction { get; set; }
+        public bool Vertical { get; set; }
+        public Field NextTarget { get; set; }
         public int Points { get; set; }
         public Battlefield Battlefield { get; }
         public Battlefield OpponentBattlefield { get; }
@@ -72,15 +75,15 @@ namespace Torpedo.Model
 
         public Field Shoot()
         {
-            if (direction == 0)
+            if (Direction == 0)
             {
                 RandomNextTarget();
             }
 
-            while(!Field.IsValidField(nextTarget.X, nextTarget.Y))
+            while(!Field.IsValidField(NextTarget.X, NextTarget.Y))
             {
                 SetDirection();
-                if(direction == 0)
+                if(Direction == 0)
                 {
                     RandomNextTarget();
                     break;
@@ -88,7 +91,7 @@ namespace Torpedo.Model
                 SetNextTarget();
             }
 
-            return nextTarget;
+            return NextTarget;
         }
 
         private void RandomNextTarget()
@@ -102,18 +105,18 @@ namespace Torpedo.Model
                 y = random.Next(0, 10);
             }
             while (OpponentBattlefield.IsShot(x, y));
-            nextTarget = new Field(x, y);
-            OpponentBattlefield.SetFieldAsShot(nextTarget.X, nextTarget.Y);
+            NextTarget = new Field(x, y);
+            OpponentBattlefield.SetFieldAsShot(NextTarget.X, NextTarget.Y);
         }
 
         public void Update(Field field, bool didHit)
         {
             OpponentBattlefield.SetFieldAsShot(field.X, field.Y);
-            if (didHit && !hits.Contains(field))
+            if (didHit && !_hits.Contains(field))
             {
-                hits.Add(field);
+                _hits.Add(field);
                 Points++;
-                if (direction == 0)
+                if (Direction == 0)
                 {
                     SetDirection();
                 }
@@ -121,7 +124,7 @@ namespace Torpedo.Model
             }
             else
             {
-                if (direction != 0)
+                if (Direction != 0)
                 {
                     SetDirection();
                     SetNextTarget();
@@ -131,20 +134,20 @@ namespace Torpedo.Model
 
         private void SetNextTarget()
         {
-            if (vertical)
+            if (Vertical)
             {
-                nextTarget = new Field(nextTarget.X + direction, nextTarget.Y);
-                while (hits.Contains(nextTarget))
+                NextTarget = new Field(NextTarget.X + Direction, NextTarget.Y);
+                while (_hits.Contains(NextTarget))
                 {
-                    nextTarget = new Field(nextTarget.X + direction, nextTarget.Y);
+                    NextTarget = new Field(NextTarget.X + Direction, NextTarget.Y);
                 }
             }
             else
             {
-                nextTarget = new Field(nextTarget.X, nextTarget.Y + direction);
-                while (hits.Contains(nextTarget))
+                NextTarget = new Field(NextTarget.X, NextTarget.Y + Direction);
+                while (_hits.Contains(NextTarget))
                 {
-                    nextTarget = new Field(nextTarget.X, nextTarget.Y + direction);
+                    NextTarget = new Field(NextTarget.X, NextTarget.Y + Direction);
                 }
             }
         }
@@ -157,21 +160,21 @@ namespace Torpedo.Model
         private void SetDirection()
         {
 
-            if (direction == 0)
+            if (Direction == 0)
             {
-                direction = -1;
+                Direction = -1;
             }
-            else if (direction == -1)
+            else if (Direction == -1)
             {
-                direction = 1;
+                Direction = 1;
             }
-            else if (direction == 1 && hits.Count == 1)
+            else if (Direction == 1 && _hits.Count == 1)
             {
-                vertical = false;
-                nextTarget = hits[0];
-                direction = -1;
+                Vertical = false;
+                NextTarget = _hits[0];
+                Direction = -1;
             }
-            else if (direction == 1 && !vertical)
+            else if (Direction == 1 && !Vertical)
             {
                 Reset();
             }
@@ -182,9 +185,9 @@ namespace Torpedo.Model
 
         private void Reset()
         {
-            direction = 0;
-            hits.Clear();
-            vertical = true;
+            Direction = 0;
+            _hits.Clear();
+            Vertical = true;
         }
     }
 }
