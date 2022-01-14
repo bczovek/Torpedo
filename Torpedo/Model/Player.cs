@@ -2,14 +2,14 @@
 {
     public class Player
     {
-        private Battlefield _battlefield;
+        public Battlefield Battlefield { get; private set; }
 
-        private Battlefield _opponentBattlefield;
+        public Battlefield OpponentBattlefield { get; private set; }
 
         public Player(string name)
         {
-            _battlefield = new Battlefield();
-            _opponentBattlefield = new Battlefield();
+            Battlefield = new Battlefield();
+            OpponentBattlefield = new Battlefield();
             Name = name;
             Points = 0;
         }
@@ -19,17 +19,17 @@
 
         public bool PlaceShip(int x, int y, int size, bool isHorizontal)
         {
-            if (_battlefield.CheckShipPlace(x, y, size, isHorizontal))
+            if (Battlefield.CheckShipPlace(x, y, size, isHorizontal))
             {
                 for (int i = 0; i < size; i++)
                 {
                     if (isHorizontal)
                     {
-                        _battlefield.SetFieldAsShip(x, y + i);
+                        Battlefield.SetFieldAsShip(x, y + i);
                     }
                     else
                     {
-                        _battlefield.SetFieldAsShip(x + i, y);
+                        Battlefield.SetFieldAsShip(x + i, y);
                     }
                 }
                 return true;
@@ -40,32 +40,32 @@
 
         public bool ShipPlacedAtField(int x, int y)
         {
-            return _battlefield.IsShip(x, y);
+            return Battlefield.IsShip(x, y);
         }
 
         public bool FieldIsShot(int x, int y)
         {
-            return _battlefield.IsShot(x, y);
+            return Battlefield.IsShot(x, y);
         }
 
         public void ClearShips()
         {
-            this._battlefield.ResetField();
+            this.Battlefield.ResetField();
         }
 
         public bool IsGameOver()
         {
-            return _battlefield.IsGameOver();
+            return Battlefield.IsGameOver();
         }
 
         public bool Shoot(int x, int y, bool isHit)
         {
-            if (!_opponentBattlefield.IsShot(x, y))
+            if (!OpponentBattlefield.IsShot(x, y))
             {
-                _opponentBattlefield.SetFieldAsShot(x, y);
+                OpponentBattlefield.SetFieldAsShot(x, y);
                 if (isHit)
                 {
-                    _opponentBattlefield.SetFieldAsShip(x, y);
+                    OpponentBattlefield.SetFieldAsShip(x, y);
                     Points++;
                 }
                 return isHit;
@@ -76,7 +76,7 @@
 
         public void TakeShot(int x, int y)
         {
-            _battlefield.SetFieldAsShot(x, y);
+            Battlefield.SetFieldAsShot(x, y);
         }
     }
 }

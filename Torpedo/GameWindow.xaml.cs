@@ -26,11 +26,15 @@ namespace Torpedo
         {
             InitializeComponent();
             _turnManager = turnManager;
-            UpdateOwnTable();
             if(_turnManager.players.Count > 1)
             {
                 UpdateEnemyTable();
             }
+            else
+            {
+                _turnManager.NextTurn();
+            }
+            UpdateOwnTable();
         }
         
         public void UpdateOwnTable()
@@ -155,7 +159,7 @@ namespace Torpedo
                 enemyGrid.Children.Add(rectangle);
                 Grid.SetRow(rectangle, row);
                 Grid.SetColumn(rectangle, col);
-
+                
                 UpdateOwnTable();
             }
 
@@ -178,6 +182,19 @@ namespace Torpedo
                 GameOverWindow gameOverWindow = new GameOverWindow(_turnManager.WinnerName());
                 gameOverWindow.Show();
                 Close();
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_turnManager.players.Count == 1)
+            {
+                if (e.Key == Key.F1)
+                {
+                    AIBattlefieldWindow aIBattlefieldWindow = new AIBattlefieldWindow(_turnManager.GetDefendingPlayerBattlefield());
+
+                    aIBattlefieldWindow.ShowDialog();
+                }
             }
         }
     }

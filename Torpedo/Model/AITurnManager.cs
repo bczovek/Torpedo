@@ -84,5 +84,10 @@ namespace Torpedo.Model
 
             return isHit && Ai.ShipPlacedAtField(x, y);
         }
+
+        public Battlefield GetDefendingPlayerBattlefield()
+        {
+            return Ai.Battlefield;
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Torpedo"
         mc:Ignorable="d"
         Title="GameWindow" Height="700" Width="1300"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <StackPanel Background="Black">
         <Grid>
             <Grid.RowDefinitions>

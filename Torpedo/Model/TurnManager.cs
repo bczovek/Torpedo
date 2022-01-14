@@ -71,5 +71,9 @@ namespace Torpedo.Model
             return isHit;
         }
 
+        public Battlefield GetDefendingPlayerBattlefield()
+        {
+            return DefendingPlayer.Battlefield;
+        }
     }
 }

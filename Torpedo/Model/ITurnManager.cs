@@ -17,5 +17,7 @@ namespace Torpedo.Model
         string WinnerName();
 
         public int GetDefendingPlayerPoints();
+
+        public Battlefield GetDefendingPlayerBattlefield();
     }
 }
