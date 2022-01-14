@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
 using Torpedo.Model;
 
 namespace TorpedoTests
@@ -7,15 +8,14 @@ namespace TorpedoTests
     public class TorpedoTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Shoot_WithOneHit_UpperField()
         {
             // Arrange
             var aiPlayer = new AIPlayer();
-            var field = new Field(5, 3);
-            var expected = new Field(field.X, field.Y - 1);
+            var field = aiPlayer.Shoot();
+            var expected = new Field(field.X - 1, field.Y);
 
             // Act
-            aiPlayer.Shoot();
             aiPlayer.Update(field, true);
             var actual = aiPlayer.Shoot();
 
