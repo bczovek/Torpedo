@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Scoreboard" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
-        <DataGrid Name="scoreGrid" Grid.Row="1" >
+        <DataGrid Name="scoreGrid" Grid.Row="1" IsReadOnly="True">
             
         </DataGrid>
 
