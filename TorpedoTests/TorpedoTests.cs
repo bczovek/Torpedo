@@ -11,15 +11,17 @@ namespace TorpedoTests
         {
             // Arrange
             var aiPlayer = new AIPlayer();
-            var field = new Field(5, 2);
-            var expected = new Field(4, 2);
+            var field = new Field(5, 3);
+            var expected = new Field(field.X, field.Y - 1);
 
             // Act
             aiPlayer.Shoot();
             aiPlayer.Update(field, true);
+            var actual = aiPlayer.Shoot();
 
             // Assert
-            Assert.AreEqual(expected, aiPlayer.Shoot());
+            Assert.AreEqual(expected.X, actual.X);
+            Assert.AreEqual(expected.Y, actual.Y);
         }
     }
 }
