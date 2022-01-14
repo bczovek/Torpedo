@@ -17,5 +17,7 @@ namespace Torpedo.Model
         int TurnCount { get; set; }
 
         string WinnerName();
+
+        public int GetDefendingPlayerPoints();
     }
 }

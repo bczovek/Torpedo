@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Torpedo.Model;
+using Torpedo.Repositories;
 
 namespace Torpedo
 {
@@ -160,9 +161,23 @@ namespace Torpedo
 
             if(!string.IsNullOrWhiteSpace(_turnManager.WinnerName()))
             {
+                using ResultContext resultContext = new ResultContext();
+                {
+                    resultContext.Add(new Result()
+                    {
+                        NumberOfPlayer1Hits = _turnManager.players[0].Points,
+                        NumberOfPlayer2Hits = _turnManager.GetDefendingPlayerPoints(),
+                        NumberOfTurns = _turnManager.TurnCount,
+                        Player1Name = _turnManager.players[0].Name,
+                        Player2Name = _turnManager.players.Count > 1 ? _turnManager.players[1].Name : "AI",
+                        WinnerName = _turnManager.WinnerName()
+                    }
+                    );
+                }
+                resultContext.SaveChanges();
                 GameOverWindow gameOverWindow = new GameOverWindow(_turnManager.WinnerName());
                 gameOverWindow.Show();
-                this.Close();
+                Close();
             }
         }
     }
