@@ -5,13 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Torpedo"
         mc:Ignorable="d"
-        Title="ScoreboardWindow" Height="450" Width="800"
+        Title="ScoreboardWindow" Height="450" Width="800">
         WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -21,14 +17,7 @@
 
         <TextBlock Grid.Row="0" Text="Scoreboard" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
         <DataGrid Name="scoreGrid" Grid.Row="1">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Player1" HeaderStyle="{StaticResource HeaderStyle}" IsReadOnly="True" Width="2*"/>
-                <DataGridTextColumn Header="Player2" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}" Width="2*"/>
-                <DataGridTextColumn Header="Rounds" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}" Width="2*"/>
-                <DataGridTextColumn Header="Player1 hits" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}" Width="2*"/>
-                <DataGridTextColumn Header="Plyer2 hits" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}" Width="2*"/>
-                <DataGridTextColumn Header="Winner" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}" Width="2*"/>
-            </DataGrid.Columns>
+            
         </DataGrid>
 
         <Button Grid.Row="2" Content="Back to main menu" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="200" Click="MainMenu"/>

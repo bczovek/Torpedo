@@ -18,6 +18,12 @@ namespace Torpedo.Model
             Ai.PlaceShips();
             TurnCount = 1;
         }
+
+        public int GetDefendingPlayerPoints()
+        {
+            return Ai.Points;
+        }
+
         public Player Player { get; private set; }
         public AIPlayer Ai { get; private set; }
 

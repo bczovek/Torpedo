@@ -20,6 +20,10 @@ namespace Torpedo.Model
         public List<Player> players => new List<Player> { AttackingPlayer, DefendingPlayer};
 
         public int TurnCount { get; set; }
+        public int GetDefendingPlayerPoints()
+        {
+            return DefendingPlayer.Points;
+        }
 
         public void NextTurn()
         {
